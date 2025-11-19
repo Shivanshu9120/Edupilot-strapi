@@ -9,6 +9,7 @@ export default () => ({
       amountLimit: 100,
       apolloServer: {
         tracing: true,
+        introspection: true,
       },
     },
   },
