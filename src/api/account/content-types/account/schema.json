@@ -1,0 +1,139 @@
+{
+  "kind": "collectionType",
+  "collectionName": "accounts",
+  "info": {
+    "singularName": "account",
+    "pluralName": "accounts",
+    "displayName": "Account"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Profile_photo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "Firstname": {
+      "type": "string",
+      "required": true
+    },
+    "Lastname": {
+      "type": "string",
+      "required": true
+    },
+    "Bio": {
+      "type": "string"
+    },
+    "DOB": {
+      "type": "date"
+    },
+    "Gender": {
+      "type": "enumeration",
+      "enum": [
+        "Male",
+        "Female",
+        "Others"
+      ]
+    },
+    "Address": {
+      "type": "string"
+    },
+    "Grade": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "Kindergarten",
+        "First-Grade",
+        "Second-Grade",
+        "Third-Grade",
+        "Fourth-Grade",
+        "Fifth-Grade",
+        "Sixth-Grade",
+        "Seventh-Grade",
+        "Eighth-Grade",
+        "Ninth-Grade",
+        "Tenth-Grade",
+        "Eleventh-Grade",
+        "Twelfth-Grade",
+        "Graduation",
+        "Post-Graduation"
+      ]
+    },
+    "Mobile_No": {
+      "type": "biginteger",
+      "required": true
+    },
+    "Domain": {
+      "type": "enumeration",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "Grade"
+            },
+            "Graduation"
+          ]
+        }
+      },
+      "enum": [
+        "Engineering",
+        "Arts",
+        "Commerce"
+      ]
+    },
+    "Stream": {
+      "type": "enumeration",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "Grade"
+            },
+            "Twelfth-Grade"
+          ]
+        }
+      },
+      "enum": [
+        "PCM",
+        "PCB",
+        "PCMB",
+        "Arts",
+        "Commerce"
+      ]
+    },
+    "Branch": {
+      "type": "enumeration",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "Domain"
+            },
+            "Engineering"
+          ]
+        }
+      },
+      "enum": [
+        "Civil",
+        "Mechanical",
+        "Computer Science",
+        "Electrical",
+        "Electronics",
+        "ECE",
+        "Robotics"
+      ]
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "account"
+    }
+  }
+}
